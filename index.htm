@@ -1,15 +1,50 @@
 <!doctype html>
 <html>
-<head>
-	<title>Ingo Remmers</title>
-	<style type="text/css">
-		body {
-			font-family: Helvetica;
-			font-size: 0.7em;
-		}
-	</style>
-</head>
-<body>
-	<h1>This is a test</h1>
-</body>
+	<head>
+		<title>Planets</title>
+		<style>
+			html {
+				overflow: hidden;
+				margin: 0;
+				padding: 0;
+			}
+			img {
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<img id="sun" src="sun.png" />
+
+		<script>
+			var width = window.innerWidth;
+			var height = window.innerHeight;
+			var durchmesser = 210;
+			var radius = durchmesser/2;
+			var hor = 1;
+			var vert = 1;
+			var left = width/2 - radius;
+			var oben =  height/2 - radius;
+			var sun = document.getElementById("sun");
+			sun.style.left = left +"px";
+			sun.style.top = oben + "px";
+
+			var animation = function() {
+				if ( left < 0 || left > width - durchmesser) {
+					hor *= -1;
+				}
+				if ( oben < 0 || oben > height - durchmesser) {
+					vert *= -1;
+				}
+				left = left  + hor;
+				oben = oben + vert;
+				sun.style.left = left + "px";
+				sun.style.top = oben + "px";
+			}
+
+			window.setInterval(animation, 5);
+		</script>
+	</body>
 </html>
+
